@@ -1,13 +1,16 @@
 import { useState, useEffect } from 'react';
+import { axiosGet } from '../../utils/dataFetch';
 
 export default function Return() {
   const [returnData, setReturnData] = useState(null);
 
   useEffect(() => {
     const fetchReturn = async () => {
-      const res = await fetch('/data/productReturn.json');
-      const data = await res.json();
-      setReturnData(Array.isArray(data) ? data[0] : data);
+      // const res = await fetch('/data/productReturn.json');
+      const returnData = await axiosGet('/return');
+      setReturnData(returnData)
+      // const data = await res.json();
+      // setReturnData(Array.isArray(data) ? data[0] : data);
     };
     fetchReturn();
   }, []);

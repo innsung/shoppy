@@ -1,31 +1,9 @@
-// 
-// import { StarRating } from '@/components/commons/StarRating.jsx';
-// import { ImageList } from '@/components/commons/ImageList.jsx';
-// import { LikeItem } from '@/components/commons/LikeItem.jsx';
-// import { FaRegCircleQuestion } from 'react-icons/fa6'
-//
-// /**
-//  * ProductDetail > Review
-//  */
-// export default async function Review() {
-//     const reviewData = await axiosData("/data/productReview.json");
-//
-//     return (
-//         <div>
-//             <ReviewTop data={reviewData} />
-//             <ReviewList />
-//         </div>
-//     );
-// }
-
-"use client";
-
 import { useState, useEffect } from "react";
-
 import { StarRating } from '@/components/commons/StarRating.jsx';
 import { ImageList } from '@/components/commons/ImageList.jsx';
 import { LikeItem } from '@/components/commons/LikeItem.jsx';
 import { FaRegCircleQuestion } from 'react-icons/fa6';
+import { axiosGet,axiosData } from "../../utils/dataFetch";
 
 /**
  * ProductDetail > Review
@@ -39,6 +17,7 @@ export default function Review() {
             try {
                 setIsLoading(true);
                 // JSON 파일 혹은 API 호출
+                // const data = await axiosGet("/products/review");
                 const data = await axiosData("/data/productReview.json");
                 setReviewData(data);
             } catch (error) {
@@ -50,6 +29,8 @@ export default function Review() {
 
         fetchReviewData();
     }, []);
+    console.log('review-->', reviewData);
+    
 
     if (isLoading) return <div>리뷰를 불러오는 중...</div>;
     if (!reviewData) return <div>리뷰 정보가 없습니다.</div>;

@@ -22,6 +22,7 @@ export function DetailImages({ imgList }) {
 }
 
 export function DetailInfo({ info }) {
+
   return (
     <div className="detail-info">
       <h4 className="detail-info-title-top">

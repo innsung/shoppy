@@ -24,11 +24,13 @@ export const axiosData = async (url) => {
  * - get(R), post(C), put(U), delete(D)
  */
 export const axiosGet = async(path) => {
-console.log('path-->', path);
-  
   const url = `http://localhost:9000${path}`; 
-console.log(url);
-  
   const res = await axios.get(url);
+  return res.data;
+}
+
+export const axiosPost = async(path, data) => {
+  const url = `http://localhost:9000${path}`; 
+  const res = await axios.post(url, data)
   return res.data;
 }
