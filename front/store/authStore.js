@@ -9,8 +9,8 @@ export const useAuthStore = create((set) => ({
   cartCount: 0,
   cartItems: [],       // 로컬 장바구니 아이템 목록
 
-  login: ({ userId, role, accessToken }) =>
-    set({ userId, role, accessToken, isLogin: true, authChecked: true }),
+  login: ({ userId, role, accessToken, isLogin }) =>
+    set({ userId, role, accessToken, isLogin, authChecked: true }),
 
   logout: () =>
     set({ userId: null, role: null, accessToken: null, isLogin: false, authChecked: true, cartCount: 0, cartItems: [] }),

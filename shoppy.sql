@@ -29,4 +29,44 @@ select  p.pid,
 show tables;
 select * from product_detailinfo;
 
+select count(id) as isFind from member where id='test';
+select * from member;
+
+-- x select count(*) from member where id ='test' and pwd='1234';
+
+select pwd from member where id = 'test';
+
+select * from cart;
+select * from member;
+select * from product;
+select * from view_Cartlist;
+select * from support;
+-- 어떤 고객이 어떤 상품을 몇개 구입했는가?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

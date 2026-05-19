@@ -39,8 +39,10 @@ export function cartItemsAddInfo(products, items) {
 /**
  * 장바구니 수량 증가 체크 함수
  */
-export function cartItemsCheck(prevItems, cartItem) {
+export function cartItemsCheck(prevItems, cartItem) {   //{pid:1, size:'XS', qty:1}
     //존재여부 체크
+    //cartItems = [{pid:3, size:M, qty:5}, {pid:4, size:M, qty:1}]
+    //cartItem = {pid:3, size:M, qty:1}
     const existItem = prevItems.find((item) => 
                             item.pid === cartItem.pid && item.size === cartItem.size);
 

@@ -9,10 +9,13 @@ export default function PurchaseActions({ pid }) {
   const [size, setSize] = useState('XS');
   const [showCartPopup, setShowCartPopup] = useState(false);
   const isLogin = useAuthStore((s) => s.isLogin);
-  const cartItems = useAuthStore((s) => s.cartItems);
+  const cartItems = useAuthStore((s) => s.cartItems); //[{pid:3, size:M, qty:5}]
 
   const handleAddCart = () => {
     const cartItem = { pid: String(pid), size, qty: 1 };
+
+    //cartItems = [{pid:3, size:M, qty:5}]
+    //cartItem = {pid:3, size:M, qty:1}
     const updated = cartItemsCheck(cartItems, cartItem);
     useAuthStore.getState().setCartItems(updated);
     setShowCartPopup(true);

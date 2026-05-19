@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { FaRegUser } from 'react-icons/fa6';
 import { FaLock } from 'react-icons/fa';
 import { useAuthStore } from '@/store/authStore.js';
+import { axiosPost } from '@/utils/dataFetch.js';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -20,13 +21,24 @@ export default function Login() {
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
+
     if (!formData.id) { setErrors(prev => ({ ...prev, id: '아이디를 입력해주세요' })); idRef.current.focus(); return; }
     if (!formData.pwd) { setErrors(prev => ({ ...prev, pwd: '비밀번호를 입력해주세요' })); pwdRef.current.focus(); return; }
 
     // JSON 모드: 간단 로그인 시뮬레이션 (id/pwd 모두 입력 시 성공)
-    login({ userId: formData.id, role: 'ROLE_USER', accessToken: 'mock-token' });
-    alert('로그인에 성공하셨습니다.');
-    navigate('/');
+    const result = await axiosPost('/member/login', formData);
+    if(result.isLogin) {
+      console.log(result.token, result.role, formData.id);
+      // 로그인 인증 관리 => 전역 객체 리덕스에 등록
+      login({ userId: formData.id, 
+              role: result.role, 
+              accessToken: result.token,
+              isLogin: result.isLogin });    
+      alert('로그인에 성공하셨습니다.');      
+      navigate('/');      
+    } else {
+      alert('로그인에 실패하셨습니다.');
+    }
   };
 
   return (
