@@ -15,7 +15,9 @@ export const useAuthStore = create((set) => ({
   logout: () =>
     set({ userId: null, role: null, accessToken: null, isLogin: false, authChecked: true, cartCount: 0, cartItems: [] }),
 
-  setCartCount: (count) => set({ cartCount: count }),
+  initCartCount: (count) => set(() => ({ cartCount: count })),
+
+  setCartCount: () => set((state) => ({ cartCount: state.cartCount + 1 })),
 
   setCartItems: (items) =>
     set({ cartItems: items, cartCount: items.reduce((sum, i) => sum + i.qty, 0) }),

@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { useAuthStore } from '@/store/authStore.js';
 import { cartItemsCheck, updateCartItemsQty, getTotalPrice, cartItemsAddInfo } from '@/utils/cart.js';
+import { axiosPost } from '@/utils/dataFetch.js';
 
 export default function Cart() {
   const navigate = useNavigate();
@@ -11,15 +12,16 @@ export default function Cart() {
   const [totalPrice, setTotalPrice] = useState(0);
   const cartItems = useAuthStore((s) => s.cartItems);
   const setCartCount = useAuthStore((s) => s.setCartCount);
+  const userId = useAuthStore((s) => s.userId);
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const res = await fetch('/data/products.json');
-      const list = await res.json();
-      setProducts(list);
-      const enriched = cartItemsAddInfo(list, cartItems);
-      setCartList(enriched);
-      setTotalPrice(getTotalPrice(list, cartItems));
+      const list = await axiosPost('/carts/list', {"userId": userId});
+      setCartList(list);
+      setTotalPrice(list[0].total_price);
+      // const enriched = cartItemsAddInfo(list, cartItems);
+      // setCartList(enriched);
+      // setTotalPrice(getTotalPrice(list, cartItems));
     };
     fetchProducts();
   }, [cartItems]);
@@ -42,7 +44,7 @@ export default function Cart() {
       {cartList && cartList.map(item => (
         <div key={item.cid}>
           <div className="cart-item">
-            <img src={item.image} alt="product img" />
+            <img src={`images/${item.image}`} alt="product img" />
             <div className="cart-item-details">
               <p className="cart-item-title">{item.name}</p>
               <p className="cart-item-title">{item.size}</p>

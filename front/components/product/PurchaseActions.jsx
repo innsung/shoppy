@@ -3,21 +3,25 @@ import { useNavigate } from 'react-router-dom';
 import { PiGiftThin } from 'react-icons/pi';
 import { useAuthStore } from '@/store/authStore.js';
 import { cartItemsCheck } from '@/utils/cart.js';
+import { axiosPost } from '../../utils/dataFetch.js';
 
 export default function PurchaseActions({ pid }) {
   const navigate = useNavigate();
   const [size, setSize] = useState('XS');
   const [showCartPopup, setShowCartPopup] = useState(false);
   const isLogin = useAuthStore((s) => s.isLogin);
-  const cartItems = useAuthStore((s) => s.cartItems); //[{pid:3, size:M, qty:5}]
+  const cartItems = useAuthStore((s) => s.cartItems); // [{pid:3, size:M, qty:5}]
+  const userId = useAuthStore((s) => s.userId); 
+  const setCartCount = useAuthStore((s) => s.setCartCount);
 
-  const handleAddCart = () => {
-    const cartItem = { pid: String(pid), size, qty: 1 };
-
-    //cartItems = [{pid:3, size:M, qty:5}]
-    //cartItem = {pid:3, size:M, qty:1}
-    const updated = cartItemsCheck(cartItems, cartItem);
-    useAuthStore.getState().setCartItems(updated);
+  const handleAddCart = async() => {
+    const cartItem = { pid: String(pid), size, qty: 1, userId};
+    const result = await axiosPost('/carts/add', cartItem); 
+    if(result.isAdd) {
+      setCartCount();
+    }
+    
+    // useAuthStore.getState().setCartItems(updated);
     setShowCartPopup(true);
   };
 

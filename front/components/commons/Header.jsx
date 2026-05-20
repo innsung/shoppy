@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { FiShoppingBag } from 'react-icons/fi';
 import { GiShoppingCart } from 'react-icons/gi';
 import { useAuthStore } from '@/store/authStore.js';
+import { axiosPost } from '../../utils/dataFetch.js';
 
 export default function Header() {
   const navigate = useNavigate();
@@ -12,6 +13,18 @@ export default function Header() {
   const isLogin = useAuthStore((s) => s.isLogin);
   const authChecked = useAuthStore((s) => s.authChecked);
   const cartCount = useAuthStore((s) => s.cartCount);
+  const initCartCount = useAuthStore((s) => s.initCartCount);
+
+  useEffect(() => {
+    const fetchData = async() => {
+      if(!isLogin) return;
+      
+      const result = await axiosPost('/carts/count', {"userId": userId});
+      result.count ? initCartCount(parseInt(result.count)) : initCartCount(0);
+      
+    }
+    fetchData()
+  }, [isLogin])
 
   const handleLogout = () => {
     logout();
