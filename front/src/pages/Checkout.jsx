@@ -3,9 +3,12 @@ import { useAuthStore } from '@/store/authStore.js';
 import { cartItemsAddInfo, getTotalPrice } from '@/utils/cart.js';
 
 export default function Checkout() {
-  const cartItems = useAuthStore((s) => s.cartItems);
-  const [cartList, setCartList] = useState([]);
-  const [totalPrice, setTotalPrice] = useState(0);
+  // const cartItems = useAuthStore((s) => s.cartItems);
+  const cartList = useAuthStore((s) => s.cartList);
+console.log('Checkout :: cartList=>', cartList);
+
+  // const [cartList, setCartList] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(cartList[0].total_price);
   const [terms, setTerms] = useState(false);
   const [privacy, setPrivacy] = useState(false);
   const [payment, setPayment] = useState('kakao');
@@ -15,16 +18,16 @@ export default function Checkout() {
     address2: '123', memo: '문앞',
   });
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const res = await fetch('/data/products.json');
-      const list = await res.json();
-      const enriched = cartItemsAddInfo(list, cartItems);
-      setCartList(enriched);
-      setTotalPrice(getTotalPrice(list, cartItems));
-    };
-    fetchProducts();
-  }, [cartItems]);
+  // useEffect(() => {
+  //   const fetchProducts = async () => {
+  //     const res = await fetch('/data/products.json');
+  //     const list = await res.json();
+  //     const enriched = cartItemsAddInfo(list, cartItems);
+  //     setCartList(enriched);
+  //     setTotalPrice(getTotalPrice(list, cartItems));
+  //   };
+  //   fetchProducts();
+  // }, [cartItems]);
 
   const handlePayment = () => {
     if (!terms || !privacy) {
@@ -63,7 +66,7 @@ export default function Checkout() {
               <Fragment key={item.cid ?? item.pid}>
                 <div className="label">상품명</div>
                 <div className="value">
-                  <img src={item.image} alt="product" style={{ width: '35px' }} />
+                  <img src={`images/${item.image}`} alt="product" style={{ width: '35px' }} />
                   {item.name}, {item.info}, 수량({item.qty}), 가격({parseInt(item.price).toLocaleString()}원)
                 </div>
               </Fragment>

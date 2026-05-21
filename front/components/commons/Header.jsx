@@ -14,17 +14,18 @@ export default function Header() {
   const authChecked = useAuthStore((s) => s.authChecked);
   const cartCount = useAuthStore((s) => s.cartCount);
   const initCartCount = useAuthStore((s) => s.initCartCount);
+  const isUpdateFlag = useAuthStore((s) => s.isUpdateFlag);
 
-  useEffect(() => {
+  useEffect(()=>{
     const fetchData = async() => {
       if(!isLogin) return;
-      
+
       const result = await axiosPost('/carts/count', {"userId": userId});
       result.count ? initCartCount(parseInt(result.count)) : initCartCount(0);
-      
-    }
-    fetchData()
-  }, [isLogin])
+    }    
+    fetchData();
+  }, [isLogin, isUpdateFlag]);
+
 
   const handleLogout = () => {
     logout();
