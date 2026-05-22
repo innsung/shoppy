@@ -3,15 +3,16 @@ import { useAuthStore } from '@/store/authStore.js';
 import { cartItemsAddInfo, getTotalPrice } from '@/utils/cart.js';
 import { v4 as uuidv4} from 'uuid';
 import { axiosPost } from '@/utils/dataFetch.js';
-import QRModal from '../../components/commons/QRModal';
+import QRModal from '../../components/commons/QRModal.jsx';
 
 export default function Checkout() {
   const cartList = useAuthStore((s) => s.cartList);
   const userId = useAuthStore((s) => s.userId);
   const cartCount = useAuthStore((s) => s.cartCount);
 
-  const [qrUrl, setqrUrl] = useState(null);
+  const [qrUrl, setQrUrl] = useState(null);
   const [showModal, setShowModal] = useState(false);
+
   const [totalPrice, setTotalPrice] = useState(cartList[0].total_price);
   const [terms, setTerms] = useState(false);
   const [privacy, setPrivacy] = useState(false);
@@ -50,10 +51,16 @@ export default function Checkout() {
       const orderData = { orderId, userId, itemName, quantity, totalAmount };
 
       const result = await axiosPost('/kakao/ready', orderData);
-      const {tid, next_redirect_mobile_url} = result;
-      if(tid){
-        setqrUrl(next_redirect_mobile_url);
+      const { tid, next_redirect_mobile_url} = result;
+      
+      if(tid) {
+        setQrUrl(next_redirect_mobile_url);
         setShowModal(true);
+
+        //15초후 QR false로 수정 => 사설IP 이슈
+        setTimeout(() => {
+          setShowModal(false);
+        }, 15000);
       }
       
     } catch(error) {
@@ -133,15 +140,16 @@ export default function Checkout() {
       </div>
       <button className="pay-button" onClick={handlePayment}>결제하기</button>
 
-      { showModal && 
+      { showModal &&
         (
-          <QRModal
-            qrUrl = {qrUrl}
+          <QRModal 
+            qrUrl = {qrUrl} 
             amount = {totalPrice} 
-            onClose = {() => setShowModal(false)} 
+            onClose = {() => setShowModal(false)}
           />
-        )
+        )      
       }
+
 
     </div>
   );
