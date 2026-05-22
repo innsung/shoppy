@@ -13,6 +13,7 @@ export default defineConfig({
     },
   },
   server: {
+    host: '0.0.0.0', //모든 IP 주소 허용
     port: 3000,
   },
 });
