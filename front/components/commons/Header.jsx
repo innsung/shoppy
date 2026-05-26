@@ -27,11 +27,18 @@ export default function Header() {
   }, [isLogin, isUpdateFlag]);
 
 
-  const handleLogout = () => {
-    logout();
-    alert('로그아웃 되었습니다');
-    navigate('/');
-  };
+  // const handleLogout = () => {
+  //   logout();
+  //   alert('로그아웃 되었습니다');
+  //   navigate('/');
+  // };
+
+  const handleLogout = async () => {
+    await axiosPost("/member/logout"); // ← 서버에 쿠키 삭제 요청
+    logout(); // ← Zustand 상태 초기화
+    alert("로그아웃 되었습니다");
+    navigate("/");
+};
 
   return (
     <div className="header-outer">

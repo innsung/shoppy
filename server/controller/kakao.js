@@ -22,7 +22,7 @@ export const getReady = async(req, res, next) => {
             "total_amount": totalAmount,
             "vat_amount": 0,
             "tax_free_amount": 0,
-            // "approval_url":  `http://192.168.7.58:9000/kakao/approve`,  //카카오에서 redirection url
+            // "approval_url":  `http://192.168.7.25:9000/kakao/approve`,  //카카오에서 redirection url
             "approval_url":  `https://fried-padding-professor.ngrok-free.dev/kakao/approve?partner_order_id=${orderId}`,  //카카오에서 redirection url
             "fail_url": "http://192.168.7.25:3000/fail",
             "cancel_url": "http://192.168.7.25:3000/cancel"
@@ -84,11 +84,11 @@ console.log(appSavedData);
         const result = await axios.post(approveURL, data, config);
 console.log('approve result -->', result.data);
 
-        //결제 완료 후 자동으로 http://192.168.7.58:3000/success  페이지로 자동 이동!!
+        //결제 완료 후 자동으로 http://192.168.7.25:3000/success  페이지로 자동 이동!!
         /**
-         * http://192.168.7.58:3000/success 페이지 이동 코드 추가
+         * http://192.168.7.25:3000/success 페이지 이동 코드 추가
          * 
-         * res.redirect('http://192.168.7.58:3000/success');
+         * res.redirect('http://192.168.7.25:3000/success');
          */
 
 

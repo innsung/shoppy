@@ -6,14 +6,15 @@ import { axiosPost } from '@/utils/dataFetch.js';
 import QRModal from '../../components/commons/QRModal.jsx';
 
 export default function Checkout() {
-  const cartList = useAuthStore((s) => s.cartList);
+  // const cartList = useAuthStore((s) => s.cartList);
+  const [cartList, setCartList] = useState([]);
   const userId = useAuthStore((s) => s.userId);
   const cartCount = useAuthStore((s) => s.cartCount);
-
+  const setCartListStore = useAuthStore((s) => s.setCartList);
   const [qrUrl, setQrUrl] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
-  const [totalPrice, setTotalPrice] = useState(cartList[0].total_price);
+  const [totalPrice, setTotalPrice] = useState(0);
   const [terms, setTerms] = useState(false);
   const [privacy, setPrivacy] = useState(false);
   const [payment, setPayment] = useState('kakao');
@@ -22,6 +23,16 @@ export default function Checkout() {
     zipcode: '12345', address1: '서울시 강남구 역삼동',
     address2: '123', memo: '문앞',
   });
+
+    useEffect(() => {
+    const fetchProducts = async () => {
+      const list = await axiosPost('/carts/list', {"userId": userId});
+      setCartList(list);
+      setCartListStore(list);
+      setTotalPrice(list[0].total_price);
+    };
+    fetchProducts();
+  }, []);
 
   // useEffect(() => {
   //   const fetchProducts = async () => {
