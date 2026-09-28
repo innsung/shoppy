@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import { FaRegUser } from 'react-icons/fa6';
 import { FaLock } from 'react-icons/fa';
 import { useAuthStore } from '@/store/authStore.js';
@@ -66,19 +66,8 @@ export default function Login() {
             <li>
               <button type="submit" className="btn-main-color">로그인</button>
             </li>
-            <li>
-              <div>
-                <input type="checkbox" name="status" />
-                <label htmlFor="id">아이디 저장</label>
-              </div>
-            </li>
-            <li>
-              <button className="btn-main-color-naver" type="button">네이버 로그인</button>
-            </li>
           </ul>
-          <div style={{ margin: '30px 0 0 30px', display: 'flex' }}>
-            <img src="/images/sns_login_.png" alt="SNS Login" />
-          </div>
+          <p className="login-signup-link">아직 회원이 아니신가요?<Link to="/signup">회원가입</Link></p>
         </form>
       </div>
     </div>

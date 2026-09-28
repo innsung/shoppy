@@ -3,3 +3,5 @@
 
 # 모듈
 node_modules
+.cache/
+*.log

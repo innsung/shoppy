@@ -51,9 +51,14 @@ export const getProduct = async(pid) => {
  */
 export const getAll = async() => {
     const sql = `
-        select  pid,
-                concat('images/', image) as image
-        from product
+        select  p.pid, p.name, CAST(p.price AS UNSIGNED) as price,
+                concat('/images/', p.image) as image,
+                COALESCE(t.category,'기타') as category,
+                COALESCE(t.styles,JSON_ARRAY()) as styles,
+                COALESCE(t.colors,JSON_ARRAY()) as colors,
+                (t.sample_key IS NOT NULL) as sample
+        from product p LEFT JOIN recommendation_tags t ON t.pid=p.pid
+        ORDER BY p.pid
     `;
     const [results] = await pool.execute(sql, []);
     return results;

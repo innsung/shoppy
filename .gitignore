@@ -1,0 +1,6 @@
+# Local review screenshots and extracted video frames
+/artifacts/
+.env
+.env.*
+!.env.example
+*.log

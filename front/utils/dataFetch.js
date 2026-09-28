@@ -3,7 +3,7 @@ import { useAuthStore } from "../store/authStore";  //전역객체에서 accessT
 
 //(1) 쿠키를 자동으로 주고받으려면 전역 설정 필수, axios 대신 instance 객체가 쿠키포함 처리하도록 수정
 const instance = axios.create({
-  baseURL: "http://192.168.7.25:9000",
+  baseURL: "http://localhost:9000",
   withCredentials: true, // 모든 요청에 쿠키 자동 첨부
 });
 
@@ -102,25 +102,25 @@ export const axiosData = async (url) => {
  * - get(R), post(C), put(U), delete(D)
  */
 export const axiosGet = async(path) => {
-  // const url = `http://192.168.7.25:9000${path}`;  //params
+  // const url = `http://localhost:9000${path}`;//params
   const res = await instance.get(path);
   return res.data;
 }
 
 export const axiosPost = async(path, data) => {
-  // const url = `http://192.168.7.25:9000${path}`;  
+  // const url = `http://localhost:9000${path}`;
   const res = await instance.post(path, data);
   return res.data;
 }
 
 export const axiosPut = async(path, data) => {
-  // const url = `http://192.168.7.25:9000${path}`;  
+  // const url = `http://localhost:9000${path}`;
   const res = await instance.put(path, data);
   return res.data;
 }
 
 export const axiosDelete = async(path, data) => {
-  // const url = `http://192.168.7.25:9000${path}`;  
+  // const url = `http://localhost:9000${path}`;
 
   //get, delete -> config 객체에 담아서 전송
   //✨data 속성으로 전달 시 body로 전송

@@ -2,12 +2,24 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import * as repository from '../repository/member.js';
+import pool from '../db/connection.js';
 dotenv.config();
 
 /**
  * 로그아웃 - 리프레시 토큰 삭제(쿠키 비우기)
  */
-export const getLogout = (req, res) => {
+export const getLogout = async (req, res, next) => {
+  try {
+    const profileId = req.signedCookies?.shoppy_recommendation;
+    if (typeof profileId === 'string') {
+      const [rows] = await pool.execute('SELECT feedback FROM recommendation_profiles WHERE id=?', [profileId]);
+      if (rows.length) {
+        const feedback = typeof rows[0].feedback === 'string' ? JSON.parse(rows[0].feedback) : rows[0].feedback;
+        const paths = Object.entries(feedback).filter(([, value]) => value === 'like').map(([pid]) => `$."${pid}"`);
+        if (paths.length) await pool.execute(`UPDATE recommendation_profiles SET feedback=JSON_REMOVE(feedback,${paths.map(() => '?').join(',')}) WHERE id=?`, [...paths, profileId]);
+      }
+    }
+  } catch (error) { return next(error); }
   res.clearCookie("refreshToken", {
     httpOnly: true,
     secure: false, // 개발환경

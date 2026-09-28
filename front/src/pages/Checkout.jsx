@@ -4,6 +4,7 @@ import { cartItemsAddInfo, getTotalPrice } from '@/utils/cart.js';
 import { v4 as uuidv4} from 'uuid';
 import { axiosPost } from '@/utils/dataFetch.js';
 import QRModal from '../../components/commons/QRModal.jsx';
+import {Link} from 'react-router-dom';
 
 export default function Checkout() {
   // const cartList = useAuthStore((s) => s.cartList);
@@ -13,6 +14,31 @@ export default function Checkout() {
   const setCartListStore = useAuthStore((s) => s.setCartList);
   const [qrUrl, setQrUrl] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [pendingPayment,setPendingPayment]=useState(null);
+  const [completedPayment,setCompletedPayment]=useState(null);
+  const [paymentError,setPaymentError]=useState('');
+  const [preparing,setPreparing]=useState(false);
+  useEffect(()=>{
+    if(!pendingPayment)return;
+    let stopped=false,timer;
+    const check=async()=>{
+      try{
+        const result=await axiosPost('/kakao/status',pendingPayment);
+        if(stopped)return;
+        if(result.state==='approved'){
+          setCompletedPayment(result);setPendingPayment(null);setShowModal(false);window.scrollTo(0,0);return;
+        }
+        if(result.state==='unknown'){
+          setPaymentError('결제 승인 결과를 확인하지 못했습니다. 결제 내역을 확인해 주세요.');setShowModal(false);setPendingPayment(null);return;
+        }
+      }catch(error){
+        if(stopped)return;
+        if(error.response?.status===404){setPaymentError('결제 정보가 만료되었습니다. 결제를 다시 시작해 주세요.');setPendingPayment(null);setShowModal(false);return;}
+      }
+      if(!stopped)timer=setTimeout(check,2000);
+    };
+    check();return()=>{stopped=true;clearTimeout(timer);};
+  },[pendingPayment]);
 
   const [totalPrice, setTotalPrice] = useState(0);
   const [terms, setTerms] = useState(false);
@@ -29,7 +55,7 @@ export default function Checkout() {
       const list = await axiosPost('/carts/list', {"userId": userId});
       setCartList(list);
       setCartListStore(list);
-      setTotalPrice(list[0].total_price);
+      setTotalPrice(Number(list[0]?.total_price||0));
     };
     fetchProducts();
   }, []);
@@ -46,6 +72,7 @@ export default function Checkout() {
   // }, [cartItems]);
 
   const handlePayment = async() => {
+    if(preparing||pendingPayment)return;
     if (!terms || !privacy) {
       alert('필수 약관에 모두 동의해야 결제가 가능합니다.');
       return;
@@ -55,6 +82,7 @@ export default function Checkout() {
     //orderId, userId, itemName, quantity, totalAmount
     //orderId - uuid 패키지 설치 및 사용
     try{
+      setPreparing(true);setPaymentError('');
       const orderId = uuidv4();    
       const itemName = cartList.length > 1 ? cartList[0].name + '등...' : cartList[0].name; 
       const quantity = cartCount;
@@ -62,23 +90,32 @@ export default function Checkout() {
       const orderData = { orderId, userId, itemName, quantity, totalAmount };
 
       const result = await axiosPost('/kakao/ready', orderData);
-      const { tid, next_redirect_mobile_url} = result;
+      const { tid, next_redirect_pc_url,next_redirect_mobile_url,statusToken} = result;
+      if(next_redirect_pc_url){
+        window.location.assign(next_redirect_pc_url);
+        return;
+      }
       
       if(tid) {
         setQrUrl(next_redirect_mobile_url);
         setShowModal(true);
 
-        //15초후 QR false로 수정 => 사설IP 이슈
-        setTimeout(() => {
-          setShowModal(false);
-        }, 15000);
+        setPendingPayment({orderId,statusToken});
       }
       
     } catch(error) {
-      console.log('/kakao/ready :: error -->', error);      
-    }
+      setPaymentError('결제 준비에 실패했습니다. 다시 시도해 주세요.');
+    }finally{setPreparing(false);}
   };
 
+  if(completedPayment)return <div className="cart-container" style={{maxWidth:640,margin:'64px auto',padding:40,textAlign:'center',background:'#fff',border:'1px solid #e1e6df',borderRadius:24}}>
+    <div style={{fontSize:42,color:'#486b4c'}}>✓</div>
+    <h1 style={{fontSize:28,margin:'20px 0'}}>결제가 완료되었습니다</h1>
+    <p>카카오페이 테스트 결제가 정상적으로 승인되었습니다.</p>
+    <div style={{padding:24,margin:'24px 0',background:'#f7f8f4',borderRadius:12,overflowWrap:'anywhere'}}>
+      <p>주문번호: {completedPayment.orderId}</p><p>결제 금액: {Number(completedPayment.amount).toLocaleString('ko-KR')}원</p>
+    </div><Link to="/products">쇼핑 계속하기 →</Link>
+  </div>;
   return (
     <div className="cart-container">
       <h2 className="cart-header">주문/결제</h2>
@@ -149,7 +186,10 @@ export default function Checkout() {
         <input type="checkbox" id="privacy" checked={privacy} onChange={e => setPrivacy(e.target.checked)} />
         <label htmlFor="privacy"> 개인정보 국외 이전 동의</label>
       </div>
-      <button className="pay-button" onClick={handlePayment}>결제하기</button>
+      {paymentError&&<p role="alert">{paymentError}</p>}
+      {pendingPayment&&<p role="status">휴대폰에서 결제를 완료하면 자동으로 완료 화면으로 이동합니다.</p>}
+      <button className="pay-button" disabled={preparing||!!pendingPayment} onClick={handlePayment}>{preparing?'결제 준비 중…':pendingPayment?'결제 결과 확인 중…':'결제하기'}</button>
+      {pendingPayment&&!showModal&&<button onClick={()=>setShowModal(true)}>결제 QR 다시 보기</button>}
 
       { showModal &&
         (

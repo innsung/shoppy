@@ -14,6 +14,8 @@ import PayResult from './pages/PayResult.jsx';
 import Login from './pages/Login.jsx';
 import Signup from './pages/Signup.jsx';
 import Support from './pages/Support.jsx';
+import Recommendations from '@/components/recommendations/Recommendations.jsx';
+import Favorites from './pages/Favorites.jsx';
 
 import '@/styles/cgvSignup.css';
 import '@/styles/cgv.css';
@@ -21,6 +23,7 @@ import '@/styles/commons.css';
 import '@/styles/shoppy.css';
 import '@/styles/cart.css';
 import '@/styles/checkoutinfo.css';
+import '@/styles/shop-theme.css';
 
 // ✅ 로그인 필요한 페이지 보호
 const PrivateRoute = ({ children }) => {
@@ -39,7 +42,7 @@ export default function App() {
       try {
         // ✅ instance 대신 별도 axios 사용 (인터셉터 제외)
         const res = await axios.post(
-          "http://192.168.7.25:9000/member/refresh",
+          "http://localhost:9000/member/refresh",
           {},
           {
             withCredentials: true,
@@ -71,6 +74,8 @@ export default function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="products" element={<Products />} />
+          <Route path="recommendations" element={<Recommendations />} />
+          <Route path="favorites" element={<Favorites />} />
           <Route path="products/:pid" element={<ProductDetail />} />
           {/* <Route path="cart" element={<Cart />} /> */}
           <Route

@@ -22,7 +22,7 @@ export default function Cart() {
       const list = await axiosPost('/carts/list', {"userId": userId});
       setCartList(list);
       setCartListStore(list);
-      setTotalPrice(list[0].total_price);
+      setTotalPrice(Number(list[0]?.total_price||0));
     };
     fetchProducts();
   }, [isUpdate]);

@@ -10,6 +10,7 @@ import QnA from '@/components/detailTabs/QnA.jsx';
 import Return from '@/components/detailTabs/Return.jsx';
 import PurchaseActions from '@/components/product/PurchaseActions.jsx';
 import { axiosGet } from '@/utils/dataFetch.js';
+import Recommendations from '@/components/recommendations/Recommendations.jsx';
 
 export default function ProductDetail() {
   const { pid } = useParams();
@@ -44,20 +45,13 @@ export default function ProductDetail() {
           <li className="product-detail-subtitle">{product.info}</li>
           <li className="product-detail-subtitle-star">
             <StarRating totalRate={parseFloat(product.rate)} style="star-coral" />
-            <span>527개 리뷰 &nbsp;&nbsp; {">"} </span>
-          </li>
-          <li>
-            <p className="product-detail-box">신규회원, 무이자할부 등</p>
+            <span>상품 평점</span>
           </li>
           <PurchaseActions pid={product.pid} />
-          <li>
-            <ul className="product-detail-summary-info">
-              <li>상품 요약 정보</li>
-            </ul>
-          </li>
         </ul>
       </div>
 
+      <Recommendations key={pid} similarId={pid} />
       <div className="product-detail-tab">
         <Tabs currentTab={tabName} onTabChange={setTabName} />
         <div className="tabs_contents">

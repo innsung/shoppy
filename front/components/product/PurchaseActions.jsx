@@ -28,8 +28,8 @@ export default function PurchaseActions({ pid }) {
   return (
     <>
       <li className="flex">
-        <button className="product-detail-button size">사이즈</button>
-        <select className="product-detail-select2" onChange={(e) => setSize(e.target.value)}>
+        <label htmlFor="product-size" style={{marginRight:20,fontSize:13}}>사이즈</label>
+        <select id="product-size" className="product-detail-select2" onChange={(e) => setSize(e.target.value)}>
           <option value="XS">XS</option>
           <option value="S">S</option>
           <option value="M">M</option>
@@ -48,15 +48,11 @@ export default function PurchaseActions({ pid }) {
             </div>
           </div>
         )}
-        <button type="button" className="product-detail-button order">바로 구매</button>
         <button type="button" className="product-detail-button cart"
+          style={{width:'100%'}}
           onClick={() => isLogin ? handleAddCart() : navigate('/login')}>
-          쇼핑백 담기
+          장바구니에 담기
         </button>
-        <div type="button" className="gift">
-          <PiGiftThin />
-          <div className="gift-span">선물하기</div>
-        </div>
       </li>
     </>
   );

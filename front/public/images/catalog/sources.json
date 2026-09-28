@@ -1,0 +1,385 @@
+{
+  "provider": "DummyJSON",
+  "documentation": "https://dummyjson.com/docs/products",
+  "note": "Public demonstration catalog. Prices and Korean style labels are local demo annotations.",
+  "products": [
+    {
+      "id": 83,
+      "name": "블루 블랙 체크 셔츠",
+      "category": "상의",
+      "styles": [
+        "캐주얼",
+        "클래식"
+      ],
+      "colors": [
+        "파랑",
+        "검정"
+      ],
+      "price": 29000,
+      "image": "catalog/dummyjson-83.webp",
+      "source": "https://cdn.dummyjson.com/product-images/mens-shirts/blue-&-black-check-shirt/1.webp",
+      "sourceTitle": "Blue & Black Check Shirt",
+      "sourceDescription": "The Blue & Black Check Shirt is a stylish and comfortable men's shirt featuring a classic check pattern. Made from high-quality fabric, it's suitable for both casual and semi-formal occasions.",
+      "sha256": "c6c356d6b07ba4c777c28cf74be8170594733ea88ef9de133fc2b9c0f1771a4f",
+      "pid": 8
+    },
+    {
+      "id": 84,
+      "name": "그래픽 티셔츠",
+      "category": "상의",
+      "styles": [
+        "캐주얼",
+        "스포티"
+      ],
+      "colors": [],
+      "price": 19000,
+      "image": "catalog/dummyjson-84.webp",
+      "source": "https://cdn.dummyjson.com/product-images/mens-shirts/gigabyte-aorus-men-tshirt/1.webp",
+      "sourceTitle": "Gigabyte Aorus Men Tshirt",
+      "sourceDescription": "The Gigabyte Aorus Men Tshirt is a cool and casual shirt for gaming enthusiasts. With the Aorus logo and sleek design, it's perfect for expressing your gaming style.",
+      "sha256": "815b2a11ccda4fb9d054e79c5bd14d0ee55c99e76975ca6eaee3a9853cc9a586",
+      "pid": 9
+    },
+    {
+      "id": 85,
+      "name": "데일리 플래드 셔츠",
+      "category": "상의",
+      "styles": [
+        "캐주얼",
+        "클래식"
+      ],
+      "colors": [],
+      "price": 32000,
+      "image": "catalog/dummyjson-85.webp",
+      "source": "https://cdn.dummyjson.com/product-images/mens-shirts/man-plaid-shirt/1.webp",
+      "sourceTitle": "Man Plaid Shirt",
+      "sourceDescription": "The Man Plaid Shirt is a timeless and versatile men's shirt with a classic plaid pattern. Its comfortable fit and casual style make it a wardrobe essential for various occasions.",
+      "sha256": "2f88b095657383554b8ac76623f19211a2a8daad86db30067c6732362a02dc95",
+      "pid": 10
+    },
+    {
+      "id": 86,
+      "name": "라이트 반소매 셔츠",
+      "category": "상의",
+      "styles": [
+        "캐주얼",
+        "미니멀"
+      ],
+      "colors": [],
+      "price": 27000,
+      "image": "catalog/dummyjson-86.webp",
+      "source": "https://cdn.dummyjson.com/product-images/mens-shirts/man-short-sleeve-shirt/1.webp",
+      "sourceTitle": "Man Short Sleeve Shirt",
+      "sourceDescription": "The Man Short Sleeve Shirt is a breezy and stylish option for warm days. With a comfortable fit and short sleeves, it's perfect for a laid-back yet polished look.",
+      "sha256": "a919351e54b801189bb176a72b9fc12de1d1116df8e9801516c143dfa79a3a45",
+      "pid": 11
+    },
+    {
+      "id": 87,
+      "name": "클래식 체크 셔츠",
+      "category": "상의",
+      "styles": [
+        "클래식",
+        "캐주얼"
+      ],
+      "colors": [],
+      "price": 35000,
+      "image": "catalog/dummyjson-87.webp",
+      "source": "https://cdn.dummyjson.com/product-images/mens-shirts/men-check-shirt/1.webp",
+      "sourceTitle": "Men Check Shirt",
+      "sourceDescription": "The Men Check Shirt is a classic and versatile shirt featuring a stylish check pattern. Suitable for various occasions, it adds a smart and polished touch to your wardrobe.",
+      "sha256": "59ca6183bd3f6d9f478f7f7572d20246423c58928b206279508f15ef8cc99a6f",
+      "pid": 12
+    },
+    {
+      "id": 177,
+      "name": "블랙 이브닝 드레스",
+      "category": "원피스",
+      "styles": [
+        "페미닌",
+        "클래식"
+      ],
+      "colors": [
+        "검정"
+      ],
+      "price": 89000,
+      "image": "catalog/dummyjson-177.webp",
+      "source": "https://cdn.dummyjson.com/product-images/womens-dresses/black-women's-gown/1.webp",
+      "sourceTitle": "Black Women's Gown",
+      "sourceDescription": "The Black Women's Gown is an elegant and timeless evening gown. With a sleek black design, it's perfect for formal events and special occasions, exuding sophistication and style.",
+      "sha256": "fc54074fab7013cea741db006fe0c696d975878b2888532e47356a9b370b95b4",
+      "pid": 13
+    },
+    {
+      "id": 178,
+      "name": "코르셋 레더 스커트 세트",
+      "category": "셋업",
+      "styles": [
+        "페미닌"
+      ],
+      "colors": [],
+      "price": 69000,
+      "image": "catalog/dummyjson-178.webp",
+      "source": "https://cdn.dummyjson.com/product-images/womens-dresses/corset-leather-with-skirt/1.webp",
+      "sourceTitle": "Corset Leather With Skirt",
+      "sourceDescription": "The Corset Leather With Skirt is a bold and edgy ensemble that combines a stylish corset with a matching skirt. Ideal for fashion-forward individuals, it makes a statement at any event.",
+      "sha256": "8c3958e9849b9eb5f09aa060f6a3823d8461c87b57efcd3014e99b914d3d54d9",
+      "pid": 14
+    },
+    {
+      "id": 179,
+      "name": "블랙 스커트 코르셋 세트",
+      "category": "셋업",
+      "styles": [
+        "페미닌",
+        "클래식"
+      ],
+      "colors": [
+        "검정"
+      ],
+      "price": 59000,
+      "image": "catalog/dummyjson-179.webp",
+      "source": "https://cdn.dummyjson.com/product-images/womens-dresses/corset-with-black-skirt/1.webp",
+      "sourceTitle": "Corset With Black Skirt",
+      "sourceDescription": "The Corset With Black Skirt is a chic and versatile outfit that pairs a fashionable corset with a classic black skirt. It offers a trendy and coordinated look for various occasions.",
+      "sha256": "43daca81b0ae5605fe1bcfcafca8329500fb6fb735518076786108f0d2fa4ef7",
+      "pid": 15
+    },
+    {
+      "id": 180,
+      "name": "패턴 데일리 드레스",
+      "category": "원피스",
+      "styles": [
+        "페미닌",
+        "캐주얼"
+      ],
+      "colors": [],
+      "price": 39000,
+      "image": "catalog/dummyjson-180.webp",
+      "source": "https://cdn.dummyjson.com/product-images/womens-dresses/dress-pea/1.webp",
+      "sourceTitle": "Dress Pea",
+      "sourceDescription": "The Dress Pea is a stylish and comfortable dress with a pea pattern. Perfect for casual outings, it adds a playful and fun element to your wardrobe, making it a great choice for day-to-day wear.",
+      "sha256": "1dfe39c630397b235941e66229f5a49ebaad36cedd03bc3d3c4384ae59f78f4e",
+      "pid": 16
+    },
+    {
+      "id": 181,
+      "name": "레드 블랙 수트 세트",
+      "category": "셋업",
+      "styles": [
+        "클래식"
+      ],
+      "colors": [
+        "빨강",
+        "검정"
+      ],
+      "price": 99000,
+      "image": "catalog/dummyjson-181.webp",
+      "source": "https://cdn.dummyjson.com/product-images/womens-dresses/marni-red-&-black-suit/1.webp",
+      "sourceTitle": "Marni Red & Black Suit",
+      "sourceDescription": "The Marni Red & Black Suit is a sophisticated and fashion-forward suit ensemble. With a combination of red and black tones, it showcases a modern design for a bold and confident look.",
+      "sha256": "47b12db842168fda3aca6c5ab74ae2b2e34426c0ef936a95112dbc766a5b5a48",
+      "pid": 17
+    },
+    {
+      "id": 162,
+      "name": "블루 플레어 원피스",
+      "category": "원피스",
+      "styles": [
+        "페미닌"
+      ],
+      "colors": [
+        "파랑"
+      ],
+      "price": 45000,
+      "image": "catalog/dummyjson-162.webp",
+      "source": "https://cdn.dummyjson.com/product-images/tops/blue-frock/1.webp",
+      "sourceTitle": "Blue Frock",
+      "sourceDescription": "The Blue Frock is a charming and stylish dress for various occasions. With a vibrant blue color and a comfortable design, it adds a touch of elegance to your wardrobe.",
+      "sha256": "bf1b0254d2f1ce2311461a3c9741bbe0e79b345bcd868009d5a774c61508f428",
+      "pid": 18
+    },
+    {
+      "id": 163,
+      "name": "서머 패턴 원피스",
+      "category": "원피스",
+      "styles": [
+        "페미닌",
+        "캐주얼"
+      ],
+      "colors": [],
+      "price": 29000,
+      "image": "catalog/dummyjson-163.webp",
+      "source": "https://cdn.dummyjson.com/product-images/tops/girl-summer-dress/1.webp",
+      "sourceTitle": "Girl Summer Dress",
+      "sourceDescription": "The Girl Summer Dress is a cute and breezy dress designed for warm weather. With playful patterns and lightweight fabric, it's perfect for keeping cool and stylish during the summer.",
+      "sha256": "61f623c920216aa4d96e964df7ba5b8dfdf10e19a4493428c9693ab4f40aad30",
+      "pid": 19
+    },
+    {
+      "id": 164,
+      "name": "그레이 데일리 원피스",
+      "category": "원피스",
+      "styles": [
+        "미니멀",
+        "페미닌"
+      ],
+      "colors": [
+        "회색"
+      ],
+      "price": 49000,
+      "image": "catalog/dummyjson-164.webp",
+      "source": "https://cdn.dummyjson.com/product-images/tops/gray-dress/1.webp",
+      "sourceTitle": "Gray Dress",
+      "sourceDescription": "The Gray Dress is a versatile and chic option for various occasions. With a neutral gray color, it can be dressed up or down, making it a wardrobe staple for any fashion-forward individual.",
+      "sha256": "03397e372d73d3e6e750db9cf5569d4f6e88fb5852e8b6671128c42ce47abdc2",
+      "pid": 20
+    },
+    {
+      "id": 165,
+      "name": "쇼트 플레어 원피스",
+      "category": "원피스",
+      "styles": [
+        "페미닌",
+        "캐주얼"
+      ],
+      "colors": [],
+      "price": 35000,
+      "image": "catalog/dummyjson-165.webp",
+      "source": "https://cdn.dummyjson.com/product-images/tops/short-frock/1.webp",
+      "sourceTitle": "Short Frock",
+      "sourceDescription": "The Short Frock is a playful and trendy dress with a shorter length. Ideal for casual outings or special occasions, it combines style and comfort for a fashionable look.",
+      "sha256": "d0148dacab73ef5dc3bcd108c164b3b6000a2a0df22061e93cd931fb510c6555",
+      "pid": 21
+    },
+    {
+      "id": 166,
+      "name": "타탄 체크 원피스",
+      "category": "원피스",
+      "styles": [
+        "클래식",
+        "페미닌"
+      ],
+      "colors": [],
+      "price": 55000,
+      "image": "catalog/dummyjson-166.webp",
+      "source": "https://cdn.dummyjson.com/product-images/tops/tartan-dress/1.webp",
+      "sourceTitle": "Tartan Dress",
+      "sourceDescription": "The Tartan Dress features a classic tartan pattern, bringing a timeless and sophisticated touch to your wardrobe. Perfect for fall and winter, it adds a hint of traditional charm.",
+      "sha256": "68b1128678987848232c5edd0a5add056c6fc78ef070426909b181fbbcb44e32",
+      "pid": 22
+    },
+    {
+      "id": 172,
+      "name": "블루 데일리 핸드백",
+      "category": "가방",
+      "styles": [
+        "캐주얼",
+        "미니멀"
+      ],
+      "colors": [
+        "파랑"
+      ],
+      "price": 39000,
+      "image": "catalog/dummyjson-172.webp",
+      "source": "https://cdn.dummyjson.com/product-images/womens-bags/blue-women's-handbag/1.webp",
+      "sourceTitle": "Blue Women's Handbag",
+      "sourceDescription": "The Blue Women's Handbag is a stylish and spacious accessory for everyday use. With a vibrant blue color and multiple compartments, it combines fashion and functionality.",
+      "sha256": "d835f10e79651a29ebebebb69c456714ed0d3adc7efe30ccff04b78a9be7d24f",
+      "pid": 23
+    },
+    {
+      "id": 175,
+      "name": "화이트 레더 백팩",
+      "category": "가방",
+      "styles": [
+        "캐주얼",
+        "미니멀"
+      ],
+      "colors": [
+        "흰색"
+      ],
+      "price": 45000,
+      "image": "catalog/dummyjson-175.webp",
+      "source": "https://cdn.dummyjson.com/product-images/womens-bags/white-faux-leather-backpack/1.webp",
+      "sourceTitle": "White Faux Leather Backpack",
+      "sourceDescription": "The White Faux Leather Backpack is a trendy and practical backpack for the modern woman. With a sleek white design and ample storage space, it's perfect for both casual and on-the-go styles.",
+      "sha256": "bcdd9f951790dc029a7926b7a83f1f21b35da885692f72cd79c9e00888d87a06",
+      "pid": 24
+    },
+    {
+      "id": 176,
+      "name": "블랙 클래식 핸드백",
+      "category": "가방",
+      "styles": [
+        "클래식",
+        "미니멀"
+      ],
+      "colors": [
+        "검정"
+      ],
+      "price": 59000,
+      "image": "catalog/dummyjson-176.webp",
+      "source": "https://cdn.dummyjson.com/product-images/womens-bags/women-handbag-black/1.webp",
+      "sourceTitle": "Women Handbag Black",
+      "sourceDescription": "The Women Handbag in Black is a classic and versatile accessory that complements various outfits. With a timeless black color and functional design, it's a must-have in every woman's wardrobe.",
+      "sha256": "c94dd2eaeede7780d49959eea345fd1f7bd61ddc351a73700fe30450c5532c8e",
+      "pid": 25
+    },
+    {
+      "id": 185,
+      "name": "블랙 브라운 슬리퍼",
+      "category": "신발",
+      "styles": [
+        "캐주얼",
+        "미니멀"
+      ],
+      "colors": [
+        "검정",
+        "갈색"
+      ],
+      "price": 19000,
+      "image": "catalog/dummyjson-185.webp",
+      "source": "https://cdn.dummyjson.com/product-images/womens-shoes/black-&-brown-slipper/1.webp",
+      "sourceTitle": "Black & Brown Slipper",
+      "sourceDescription": "The Black & Brown Slipper is a comfortable and stylish choice for casual wear. Featuring a blend of black and brown colors, it adds a touch of sophistication to your relaxation.",
+      "sha256": "5a6d34b95e1a2c535415714f22937b0976b68d7790511e4935c3abad3c945fed",
+      "pid": 26
+    },
+    {
+      "id": 188,
+      "name": "데일리 펌프스",
+      "category": "신발",
+      "styles": [
+        "페미닌",
+        "클래식"
+      ],
+      "colors": [],
+      "price": 49000,
+      "image": "catalog/dummyjson-188.webp",
+      "source": "https://cdn.dummyjson.com/product-images/womens-shoes/pampi-shoes/1.webp",
+      "sourceTitle": "Pampi Shoes",
+      "sourceDescription": "Pampi Shoes offer a blend of comfort and style for everyday use. With a versatile design, they are suitable for various casual occasions, providing a trendy and relaxed look.",
+      "sha256": "49450cd305005d788b56113adf4fb6efc0e0ade124bb82e86380f813f51e723a",
+      "pid": 27
+    },
+    {
+      "id": 189,
+      "name": "레드 포인트 슈즈",
+      "category": "신발",
+      "styles": [
+        "페미닌"
+      ],
+      "colors": [
+        "빨강"
+      ],
+      "price": 39000,
+      "image": "catalog/dummyjson-189.webp",
+      "source": "https://cdn.dummyjson.com/product-images/womens-shoes/red-shoes/1.webp",
+      "sourceTitle": "Red Shoes",
+      "sourceDescription": "The Red Shoes make a bold statement with their vibrant red color. Whether for a party or a casual outing, these shoes add a pop of color and style to your wardrobe.",
+      "sha256": "cc624e32ef3acb394e121f1d0d7bb509b67a83b7c5e7c03db4f09b102975a44f",
+      "pid": 28
+    }
+  ]
+}
